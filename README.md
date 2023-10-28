@@ -6,4 +6,3 @@ Three-tier Architecture
 
 ![three tier architecture](<images/3 tier architecture.jpg>)
 
-
