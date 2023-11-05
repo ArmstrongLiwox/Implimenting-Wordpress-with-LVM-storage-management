@@ -22,6 +22,6 @@ Three-tier Architecture
 
 ### 3. Open up the Linux terminal to begin configuration
 
-### 4. Use lsblk /
+### 4. Use lsblk
 
 > 
