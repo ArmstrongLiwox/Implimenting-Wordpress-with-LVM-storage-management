@@ -15,9 +15,11 @@ Three-tier Architecture
 
 
 
-### 1. Prepare a web server
+### 1. Launch instance and Create 3 volumes
 
 > Launch an ec2 instance that will serve as a web server
+
+![launch ec2](<images/launch ec2.jpg>)
 
 > EBS means Elastic Bolck Volume
 
