@@ -24,51 +24,63 @@ Three-tier Architecture
 > EBS means Elastic Bolck Volume
 
 > Create 3 volumes , 10Gb each.
-
+![create volume](<images/create volume.jpg>)
+![volume](images/volume.jpg)
+![volumes created](<images/volumes created.jpg>)
 > 
 
 ### 2. Attach all three volumes the web server Ec2 instance
+![attach volumes](<images/attach volume.jpg>)
 
 ### 3. Open up the Linux terminal to begin configuration
 
+![logged in](<images/loged in.jpg>)
 ### 4. Use lsblk
 
 ```
 lsblk
 ```
+![lsblk](images/lsblk.jpg)
 
 ### 5. Use df -h
 
 ```
 df -h
 ```
-
+![df -h](<images/df -h.jpg>)
 ### 6. Use gdisk
 
 ```
 gdisk
 ```
-> 
+![gdisk](images/gdisk.jpg)
 
 ```
 sudo gdisk /dev/xvdf
 ```
+![sudo gdisk](<images/sudo gdisk.jpg>)
+![w](images/w.jpg)
+![y](images/y.jpg)
 
 ### 7. use lsblk to view the newly configured partition
 
 ```
 lsblk
 ```
+![lsblk 2](<images/lsblk 2.jpg>)
 
 ### 8. Install lvm2
 
 ```
 sudo yum install lvm2
 ```
-
+![lvm2](images/lvm2.jpg)
 ```
 sudo lvmdiskscan
 ```
+![lvmdiskscan](images/lvmdiskscan.jpg)
+
+
 > Run pvcreate to mark each of the three diska as physical volumes.
 
 ```
