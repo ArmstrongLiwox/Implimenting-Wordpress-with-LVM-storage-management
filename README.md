@@ -382,8 +382,9 @@ sudo systemctl status php-fpm
 ![status](<images/php status.jpg>)
 
 ```
-setsebool -P httpd_execmem 1
+sudo setsebool -P httpd_execmem 1
 ```
+![setsebool](images/setsebool.jpg)
 
 ### 5. Restart Apache
 
