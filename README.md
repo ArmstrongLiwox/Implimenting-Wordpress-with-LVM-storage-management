@@ -149,6 +149,8 @@ sudo lsblk
 ```
 ![lsblk 4](<images/lsblk 4.jpg>)
 
+![lvs vgs pvs](<images/lvs vgs pvs.jpg>)
+
 ### 14. use mkfs.ext4 to format the logical volumes with ext4 filesystem
 
 ```
@@ -157,16 +159,20 @@ sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
 ```
 sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
 ```
+![mkfs](images/mkfs.jpg)
+
 ### 15. Create /var/www/html directory to store web files
 
 ```
 sudo mkdir -p /var/www/html
 ```
 
+![mkdir www](<images/mkdir www.jpg>)
+
 ### 16. Create to store backup of log data
 
 ```
-sudo mkdir -p /home/directory/logs
+sudo mkdir -p /home/recovery/logs
 ```
 
 ### 17. Mount /var/www/html on apps-lv logical volume
@@ -174,6 +180,7 @@ sudo mkdir -p /home/directory/logs
 ```
 sudo mount /dev/webdata-vg/apps-lv /var/www/html/
 ```
+![mount](images/mount.jpg)
 
 ### 18. Use rsync utility to backup all the files in the log directory /var/log into home/directory/logs
 
@@ -182,17 +189,26 @@ sudo mount /dev/webdata-vg/apps-lv /var/www/html/
 ```
 sudo rsync -av /var/log/. /home/recovery/logs/
 ```
+![rsync](images/rsync.jpg)
+
+![ls -l var](<images/ls var.jpg>)
+
 ### 19. Mount /var/log on logs-lv logical volume
 
 ```
 sudo mount /dev/webdata-vg/logs-lv /var/log
 ```
+![mount](images/mount.jpg)
+
 
 ### 20. Restore files back into /var/log directory
 
 ```
 sudo rsync -av /home/recovery/logs/log/. /var/log
 ```
+
+![restore](images/restore.jpg)
+
 ### 21. Update file /etc/fstab so that the mount configuration will persist after restart of the server.
 
 ```
@@ -201,6 +217,8 @@ sudo blkid
 ```
 sudo vi /etc/fstab/
 ```
+![blkid](images/blkid.jpg)
+
 ### 22. Test the configuration and reload the daemon
 
 ```
