@@ -215,9 +215,11 @@ sudo rsync -av /home/recovery/logs/log/. /var/log
 sudo blkid
 ```
 ```
-sudo vi /etc/fstab/
+sudo vi /etc/fstab
 ```
 ![blkid](images/blkid.jpg)
+
+![fstab](images/fstab.jpg)
 
 ### 22. Test the configuration and reload the daemon
 
@@ -227,6 +229,7 @@ sudo mount -a
 ```
 sudo systemctl daemon-reload
 ```
+![reload](images/reload.jpg)
 
 ### 23. Verify the setup by running df -h
 
@@ -234,7 +237,7 @@ sudo systemctl daemon-reload
 df -h
 ```
 
-
+![df -h check](<images/df -h check.jpg>)
 
 
 
