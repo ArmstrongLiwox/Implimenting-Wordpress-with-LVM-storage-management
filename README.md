@@ -248,25 +248,91 @@ df -h
 
 > Launch a second redhat EC2 instance that will have a role -DB server
 
+![launch ec2 db server](<images/launch db ec2.jpg>)
+
+![db volumes](<images/volumes db.jpg>)
+
+![attach db](<images/attach db.jpg>)
+
+![attach volumes db](<images/attach db volumes.jpg>)
+
+![connect db](<images/connect db.jpg>)
+
 > Repeat steps of webserver
+
+![configure db](<images/connect db.jpg>)
+
+![install lvm2](<images/install lvm2.jpg>)
+
+![pv create](images/pvcreate.jpg)
+
+![vgs db](<images/vgs db.jpg>)
+
 
 > create db-lv (instead of apps-lv)
 
+```
+sudo lvcreate -n db-lv -L 20G vg-db
+```
+![db-lv](images/db-lv.jpg)
+
+```
+sudo mkfs.ext4 /dev/vg-db/db-lv
+```
+![mkfs.ext4](images/mkfs.ext4.jpg)
+
+
 > mount it to /db (instead of var/www/html)
 
+```
+sudo mount /dev/vg-db/db-lv /db
+```
+![mount db](<images/mount db.jpg>)
+
+```
+sudo blkid
+```
+![blkid db](<images/blkid db.jpg>)
+
+```
+sudo vi /etc/fstab
+```
+
+![fstab db](<images/fstab db.jpg>)
+
+```
+sudo mount -a
+```
+```
+sudo systemctl daemon-reload
+```
+![reload db](<images/reload db.jpg>)
+
+![df -h db](<images/df -h db.jpg>)
+
 ## Step 3. Install wordpress on the webserver EC2
+
+```
+sudo yum update -y
+```
 
 ### 1. Update repository
 
 ```
 sudo yum -y update
 ```
+![yum update](<images/yum update.jpg>)
+
+![update complete](<images/update complete.jpg>)
+
 ### 2. Install wget, Apache and its dependencies
 
 ```
 sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json 
 ```
- 
+ ![wget](images/wget.jpg)
+
+
 ### 3. Start Apache
 
 ```
@@ -275,6 +341,8 @@ sudo systemctl enable httpd
 ```
 sudo systemctl start httpd
 ```
+![start apache](<images/start apache.jpg>)
+
 
 ### 4. Install Apache and its dependencies
 
@@ -287,6 +355,8 @@ sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rp
 ```
 sudo yum module list php
 ```
+![list](images/list.jpg)
+
 ```
 sudo yum module reset php
 ```
@@ -296,12 +366,21 @@ sudo yum module enable php:remi-7.4
 ```
 sudo yum install php php-opcache php-gd php-curl php-mysqlnd
 ```
+![php install](<images/install php.jpg>)
+
+![php version](<images/php version.jpg>)
+
 ```
 sudo systemctl start php-fpm
 ```
 ```
 sudo systemctl enable php-fpm
 ```
+```
+sudo systemctl status php-fpm
+```
+![status](<images/php status.jpg>)
+
 ```
 setsebool -P httpd_execmem 1
 ```
