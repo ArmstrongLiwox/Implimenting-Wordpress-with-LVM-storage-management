@@ -43,13 +43,14 @@ lsblk
 ![lsblk](images/lsblk.jpg)
 
 ### 5. Use df -h
+> to see all mount devices
 
 ```
 df -h
 ```
 ![df -h](<images/df -h.jpg>)
 ### 6. Use gdisk
-
+> to create single partition on each of the 3 disks
 ```
 gdisk
 ```
@@ -58,21 +59,25 @@ gdisk
 ```
 sudo gdisk /dev/xvdf
 ```
+
+![8e00](images/8e00.jpg)
 ![sudo gdisk](<images/sudo gdisk.jpg>)
 ![w](images/w.jpg)
 ![y](images/y.jpg)
+![successful](<images/xvdf successful.jpg>)
 
 ### 7. use lsblk to view the newly configured partition
 
 ```
 lsblk
 ```
-![lsblk 2](<images/lsblk 2.jpg>)
+
+![lsblk3](<images/lsblk 3.jpg>)
 
 ### 8. Install lvm2
 
 ```
-sudo yum install lvm2
+sudo yum install lvm2 -y
 ```
 ![lvm2](images/lvm2.jpg)
 ```
@@ -92,21 +97,28 @@ sudo pvcreate /dev/xvdg1
 ```
 sudo pvcreate /dev/xvdh1
 ```
+![pvs](images/pvs.jpg)
+
 ### 9. Verify that your physical volume has been created successfully.
 
 ```
 sudo pvs
 ```
+![pvs](images/pvs.jpg)
+
 ### 10. Use vcreateto add all three PV to a volume grounp named VG webdata-vg
 
 ```
 sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1
 ```
+![vgs](images/vgs.jpg)
+
 ### Verify that the VG was creared successlly
 
 ```
 sudo vgs
 ```
+![vgs](images/vgs.jpg)
 
 ### 11. Create 2 logicall volumes
 
@@ -116,19 +128,26 @@ sudo lvcreate -n apps-lv -L 14G webdata-vg
 ```
 sudo lvcreate -n logs-lv -L 14G webdata-vg
 ```
+![lvs](images/lvs.jpg)
+
 ### 12. Verify the logical volume has been created.
 
 ```
 sudo lvs
 ```
+![lvs](images/lvs.jpg)
+
 ### 13. Verify entire settup
 
 ```
 sudo vgdisplay -v #view complete setup - VG, PV, and LV
 ```
+![display volumes](images/display.jpg)
+
 ```
 sudo lsblk 
 ```
+![lsblk 4](<images/lsblk 4.jpg>)
 
 ### 14. use mkfs.ext4 to format the logical volumes with ext4 filesystem
 
