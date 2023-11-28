@@ -1,4 +1,4 @@
-# Implimenting-Wordpress-with-LVM-storage-management
+# Implimenting-Wordpress-with-LVM-storage-management - Armstrong
 
 ## Implimenting Wordpress website with LVM storage management
 
@@ -623,9 +623,9 @@ http://<web-server-public-ip-address>/wordpress/
 
 ![success](images/success.jpg)
 
+# SUCCESS
+
 # CONGRATULATIONS
-
-
 
 
 
