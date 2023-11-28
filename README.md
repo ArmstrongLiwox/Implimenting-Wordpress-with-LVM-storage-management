@@ -444,10 +444,9 @@ sudo yum update
 ```
 sudo yum install mysql-server
 ```
-> verify that the service is up and running
-```
-sudo systemctl status mysqld
-```
+![mysql](<images/install mysql.jpg>)
+
+
 > restart and enable the service
 
 ```
@@ -456,17 +455,75 @@ sudo systemctl restart mysqld
 ```
 sudo systemctl enable mysqld
 ```
+
+> verify that the service is up and running
+```
+sudo systemctl status mysqld
+```
+
+![mysql running](<images/mysql running.jpg>)
+
 ## Step 5. Configure DB to work with wordpress
 
 ```
-sudo mysql
-CREATE DATABASE wordpress;
-CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
-GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+sudo mysql_secure_installation
+```
+![secure](images/secure.jpg)
+
+```
+sudo mysql -u root -p
+```
+![mysql](images/mysql.jpg)
+
+```
+create database wordpress;
+```
+```
+show databases
+```
+![database](images/database.jpg)
+
+```
+CREATE USER 'armstrong'@'172.31.47.114' IDENTIFIED WITH mysql_native_password BY 'happy';
+```
+```
+GRANT ALL PRIVILEGES ON *.* TO 'armstrong'@'172.31.47.114' WITH GRANT OPTION;
+```
+```
 FLUSH PRIVILEGES;
+```
+```
 SHOW DATABASES;
+```
+```
+select user, host from mysql.user;
+```
+```
 exit
 ```
+
+![database created](<images/database created.jpg>)
+
+
+```
+sudo vi /etc/my.cnf
+```
+```
+[mysqld]
+bind-address=0.0.0.0
+```
+
+```
+[mysqld]
+bind-address=172.31.47.114
+```
+![bind address](<images/bind address.jpg>)
+
+```
+sudo systemctl restart mysqld
+```
+
+
 ## Step 6. Configure wordpress to connet to remote database
 
 > open Mysql port 3306 on DB server EC2
