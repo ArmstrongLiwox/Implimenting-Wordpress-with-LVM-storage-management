@@ -615,7 +615,13 @@ http://<web-server-public-ip-address>/wordpress/
 
 > fill out the DB credentials
 
+![info](images/info.jpg)
 
+![login](images/login.jpg)
+
+![loginn](images/login1.jpg)
+
+![success](images/success.jpg)
 
 # CONGRATULATIONS
 
