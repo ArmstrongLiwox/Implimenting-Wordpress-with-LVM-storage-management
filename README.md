@@ -623,6 +623,8 @@ http://<web-server-public-ip-address>/wordpress/
 
 ![success](images/success.jpg)
 
+![website](images/website.jpg)
+
 # SUCCESS
 
 # CONGRATULATIONS
