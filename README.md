@@ -546,6 +546,25 @@ sudo reboot
 ```
 ![status](images/status.jpg)
 
+> edit sudo wp-config.php file in web server
+
+```
+sudo vi wp-config.php
+```
+![wp config](<images/wp config.jpg>)
+
+![edit config](<images/edit config.jpg>)
+
+```
+sudo systemctl restart httpd
+```
+> disable the default page of apache
+
+```
+sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_backup
+```
+
+
 ## Step 6. Configure wordpress to connet to remote database
 
 > open Mysql port 3306 on DB server EC2
@@ -554,11 +573,25 @@ sudo reboot
 
 ![inbound rule](<images/inbound rule.jpg>)
 
-> install mysql client and test that you can connect from your ebserver to th DB server EC2
+> install mysql client and test that you can connect from your webserver to the Data Base server EC2
 
 ```
-sudo mysql -h 172.31.47.114 -u myuser -p
+sudo mysql -h 172.31.42.213 -u myuser -p
 ```
+![communicate database](<images/communicate database.jpg>)
+
+## Step 7. Configure SE Linux policies
+
+```
+ sudo chown -R apache:apache /var/www/html/
+ ```
+ ```
+ sudo chcon -t httpd_sys_rw_content_t /var/www/html/ -R
+ ```
+ ```
+ sudo setsebool -P httpd_can_network_connect=1
+```
+![se linux policies](<images/SE Linux policies.jpg>)
 
 
 ```
@@ -576,8 +609,10 @@ sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
 > try to access from your browser link to the wordpress
 
 ```
-http://<web-server-public-ip-address>/wordpress/```
+http://<web-server-public-ip-address>/wordpress/
 ```
+![wordpress working](<images/wordpress working.jpg>)
+
 > fill out the DB credentials
 
 
