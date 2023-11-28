@@ -402,18 +402,29 @@ cd   wordpress
 ```
 sudo wget http://wordpress.org/latest.tar.gz
 ```
+![wordpress](<images/wordpress download.jpg>)
+
 ```
 sudo tar xzvf latest.tar.gz
 ```
+![extract](images/extract.jpg)
+
 ```
 sudo rm -rf latest.tar.gz
 ```
 ```
-cp wordpress/wp-config-sample.php wordpress/wp-config.php
+sudo cp -R wp-config-sample.php wp-config.php
+```
+![config.php](images/config.php.jpg)
+
+```
+# cp wordpress/wp-config-sample.php wordpress/wp-config.php
 ```
 ```
-cp -R wordpress /var/www/html/
+sudo cp -R wordpress/. /var/www/html/
 ```
+![copy wordpress](<images/copy wordpress.jpg>)
+
 ### 7. Configure SE linux policies
 ```
  sudo chown -R apache:apache /var/www/html/wordpress
