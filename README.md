@@ -476,6 +476,16 @@ sudo mysql -u root -p
 ![mysql](images/mysql.jpg)
 
 ```
+sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER `myuser`@`172.31.47.114` IDENTIFIED BY 'mypass';
+GRANT ALL ON wordpress.* TO 'myuser'@'172.31.47.114';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit
+```
+
+```
 create database wordpress;
 ```
 ```
@@ -522,7 +532,19 @@ bind-address=172.31.47.114
 ```
 sudo systemctl restart mysqld
 ```
-
+> error encountered 
+```
+sudo systemctl stop mysqld
+sudo yum remove mysql-server
+sudo rm -rf /var/lib/mysql
+sudo rm -rf /etc/my.cnf
+sudo yum autoremove
+rpm -qa | grep mysql
+sudo userdel mysql
+sudo groupdel mysql
+sudo reboot
+```
+![status](images/status.jpg)
 
 ## Step 6. Configure wordpress to connet to remote database
 
@@ -530,7 +552,14 @@ sudo systemctl restart mysqld
 
 > in the inbound rule configure source as /32
 
+![inbound rule](<images/inbound rule.jpg>)
+
 > install mysql client and test that you can connect from your ebserver to th DB server EC2
+
+```
+sudo mysql -h 172.31.47.114 -u myuser -p
+```
+
 
 ```
 sudo yum install mysql
