@@ -217,6 +217,10 @@ sudo blkid
 ```
 sudo vi /etc/fstab
 ```
+```
+UUID=0134cdfc-Ocfd-4018-8b2e-bdf6802e91c0   /var/www/html  ext4  defaults  0 0
+UUID=eb227b42-1387-4813-a2c4-77cf95bc7c68   /var/log       ext4  defaults  0 0
+```
 ![blkid](images/blkid.jpg)
 
 ![fstab](images/fstab.jpg)
